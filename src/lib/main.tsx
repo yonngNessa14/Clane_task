@@ -1,8 +1,8 @@
-import { KeyboardAvoidingView, SafeAreaView, } from 'react-native';
+import {KeyboardAvoidingView, SafeAreaView} from 'react-native';
 // import { fontBold, fontRegular, fontSemi } from '../helpers/_config';
-import Animated, { Easing } from 'react-native-reanimated';
+import Animated, {Easing} from 'react-native-reanimated';
 import PropTypes from 'prop-types';
-import React, { useState, useEffect, useRef } from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
   View,
   Text,
@@ -16,20 +16,20 @@ import {
   TextInput,
   StyleSheet,
   Platform,
-  Image
+  Image,
 } from 'react-native';
 // import Entypo from 'react-native-vector-icons/Entypo';
 // import AppColors from '../helpers/_colors';
-const { Value } = Animated;
-const { width, height } = Dimensions.get('window');
+const {Value} = Animated;
+const {width, height} = Dimensions.get('window');
 
 interface GeneralProps {
   style?: any;
   backgroundColor?: any;
   color?: any;
- }
- 
- interface MarginProps {
+}
+
+interface MarginProps {
   margin?: number;
   marginRight?: number;
   marginLeft?: number;
@@ -37,9 +37,9 @@ interface GeneralProps {
   marginBottom?: number;
   marginVertical?: number;
   marginHorizontal?: number;
- }
- 
- interface PaddingProps {
+}
+
+interface PaddingProps {
   padding?: number;
   paddingLeft?: number;
   paddingRight?: number;
@@ -47,26 +47,26 @@ interface GeneralProps {
   paddingBottom?: number;
   paddingVertical?: number;
   paddingHorizontal?: any;
- }
- 
- interface BorderRadiusProps {
+}
+
+interface BorderRadiusProps {
   borderRadius?: number;
   borderBottomLeftRadius?: number;
   borderBottomRightRadius?: number;
   borderTopLeftRadius?: number;
   borderTopRightRadius?: number;
- }
- 
- interface BorderWidth {
+}
+
+interface BorderWidth {
   borderBottomWidth?: number;
   borderTopWidth?: number;
   borderLeftWidth?: number;
   borderRightWidth?: number;
   borderWidth?: number;
   borderColor?: any;
- }
+}
 
-export const scaleFont =( val: any )=> {
+export const scaleFont = (val: any) => {
   let factor = PixelRatio.get();
   factor > 2.2 ? (factor = 2) : null;
   let size = ((factor * width) / 1000) * val;
@@ -78,12 +78,12 @@ const Elevation = (elevation: any) => {
   elevation == null || undefined
     ? (response = {})
     : (response = {
-      elevation,
-      shadowColor: '#0001',
-      shadowOffset: { width: 0, height: elevation * 0.6 },
-      shadowOpacity: 0.8,
-      shadowRadius: elevation * 0.5,
-    });
+        elevation,
+        shadowColor: '#0001',
+        shadowOffset: {width: 0, height: elevation * 0.6},
+        shadowOpacity: 0.8,
+        shadowRadius: elevation * 0.5,
+      });
   return response;
 };
 
@@ -100,17 +100,17 @@ export const Width = (val: any) => {
 };
 
 /**ANCHOR H1 */
-interface H{
+interface H {
   color?: any;
   fontSize?: number;
   lineHeight?: number;
-  style?: any, //edited style propType. fron array to object
+  style?: any; //edited style propType. fron array to object
   textAlign?: 'center' | 'left' | 'right';
   fontWeight?: 'bold' | 'medium' | 'regular';
-  numberOfLines?: number,
-  text?: any,
+  numberOfLines?: number;
+  text?: any;
   children: React.ReactNode;
-  flex?: number,
+  flex?: number;
   ellipses?: 'head' | 'tail' | 'middle' | 'clip';
 }
 
@@ -127,7 +127,7 @@ export const H1 = ({...props}: H) => {
             scaleFont(props.lineHeight) ||
             scaleFont(props.fontSize) ||
             scaleFont(25),
-        //   fontFamily: fontBold,
+          //   fontFamily: fontBold,
           textAlign: props.textAlign,
           fontWeight: props.fontWeight, // added this
         },
@@ -138,9 +138,8 @@ export const H1 = ({...props}: H) => {
   );
 };
 
-
 /**ANCHOR H2 */
-export const H2 = ({...props}:H) => {
+export const H2 = ({...props}: H) => {
   return (
     <Text
       numberOfLines={props.numberOfLines}
@@ -154,7 +153,7 @@ export const H2 = ({...props}:H) => {
             scaleFont(props.lineHeight) ||
             scaleFont(props.fontSize) ||
             scaleFont(20),
-        //   fontFamily: fontRegular,
+          //   fontFamily: fontRegular,
           textAlign: props.textAlign,
         },
         props.style,
@@ -164,9 +163,8 @@ export const H2 = ({...props}:H) => {
   );
 };
 
-
 /**ANCHOR P */
-export const P = (props:H) => {
+export const P = (props: H) => {
   return (
     <Text
       numberOfLines={props.numberOfLines}
@@ -179,7 +177,7 @@ export const P = (props:H) => {
             scaleFont(props.lineHeight) ||
             scaleFont(props.fontSize) ||
             scaleFont(14),
-        //   fontFamily: fontRegular,
+          //   fontFamily: fontRegular,
           textAlign: props.textAlign,
           flex: props.flex, //added this
         },
@@ -190,10 +188,9 @@ export const P = (props:H) => {
   );
 };
 
-
 /**ANCHOR CONTAINER */
 
-interface Container{
+interface Container {
   overflow?: boolean;
   opacity?: number;
   left?: number;
@@ -207,24 +204,30 @@ interface Container{
   minHeight?: any;
   widthPercent?: any;
   elevation?: any;
-  dir?: 'row'|'column'|'row-reverse';
+  dir?: 'row' | 'column' | 'row-reverse';
   wrap?: string;
   flex?: number;
   height?: number;
   width?: number;
-  verticalAlignment?: "flex-start"|'flex-end'|'center'|'space-between';
-  horizontalAlignment?: "flex-start"|'flex-end'|'center'|'space-between';
-  alignSelf?: string;
+  verticalAlignment?: 'flex-start' | 'flex-end' | 'center' | 'space-between';
+  horizontalAlignment?: 'flex-start' | 'flex-end' | 'center' | 'space-between';
+  selfAlignment?: 'flex-start' | 'flex-end' | 'center';
   backgroundColor?: any;
   style?: object;
   borderColor?: any;
   onLayout?: any;
-  selfAlignment?: any;
+  // selfAlignment?: any;
   borderStyle?: object;
   children?: React.ReactNode;
 }
 
-export const Container = ({...props}:Container & MarginProps & PaddingProps & BorderWidth & BorderRadiusProps) => {
+export const Container = ({
+  ...props
+}: Container &
+  MarginProps &
+  PaddingProps &
+  BorderWidth &
+  BorderRadiusProps) => {
   return (
     <View
       {...props}
@@ -295,9 +298,8 @@ export const Container = ({...props}:Container & MarginProps & PaddingProps & Bo
   );
 };
 
-
 /* ANCHOR AVATAR */
-interface Avatar{
+interface Avatar {
   marginLeft?: number;
   marginRight?: number;
   borderWidth?: number;
@@ -315,10 +317,13 @@ interface Avatar{
   fit?: 'cover' | 'contain';
 }
 
-export const Avatar = ({...props}:Avatar) => {
+export const Avatar = ({
+  ...props
+}: Avatar & MarginProps & PaddingProps & BorderWidth & BorderRadiusProps) => {
   return (
     <Container
-      style={[{
+      style={[
+        {
           ...Elevation(props.elevation),
           position: props.position,
           top: Height(props.top),
@@ -331,11 +336,11 @@ export const Avatar = ({...props}:Avatar) => {
           borderRadius: Width(props.size) / 2 || Width(10) / 2,
           marginRight: Width(props.marginRight),
           marginLeft: Width(props.marginLeft),
-        }]}
-        >
+        },
+      ]}>
       <ImageWrap
-        source={props.source || { uri: props.url }}
-        resizeMode={props.fit || "cover"}
+        source={props.source || {uri: props.url}}
+        resizeMode={props.fit || 'cover'}
         style={[
           styles.overflow,
           {
@@ -351,8 +356,6 @@ export const Avatar = ({...props}:Avatar) => {
   );
 };
 
-
-
 /* ANCHOR SIZED BOX */
 interface SizedBox {
   height?: number;
@@ -360,7 +363,7 @@ interface SizedBox {
   backgroundColor?: any;
   flex?: number;
 }
-export const SizedBox = ({...props}:SizedBox) => {
+export const SizedBox = ({...props}: SizedBox) => {
   return (
     <Container
       style={{
@@ -383,12 +386,11 @@ interface ScrollArea {
 export const ScrollArea = ({...props}: ScrollArea) => (
   <ScrollView
     keyboardShouldPersistTaps="handled"
-    contentContainerStyle={{ flexGrow: props.flexGrow }}
+    contentContainerStyle={{flexGrow: props.flexGrow}}
     horizontal={props.horizontal}
     showsVerticalScrollIndicator={false}
     showsHorizontalScrollIndicator={false}
-    ref={props.refValue}
-  >
+    ref={props.refValue}>
     {props.children}
   </ScrollView>
 );
@@ -412,7 +414,7 @@ export const ScrollAreaRefresh = ({...props}: ScrollAreaRefresh) => (
     horizontal={props.horizontal}
     showsVerticalScrollIndicator={false}
     showsHorizontalScrollIndicator={false}
-    contentContainerStyle={{ flexGrow: props.flexGrow }}>
+    contentContainerStyle={{flexGrow: props.flexGrow}}>
     {props.children}
   </ScrollView>
 );
@@ -429,28 +431,34 @@ interface ImageWrapProps {
   backgroundColor?: any;
   overlayColor?: any;
   horizontalAlignment?:
-  | 'center'
-  | 'flex-start'
-  | 'flex-end'
-  | 'space-between'
-  | 'space-around'
-  | 'space-evenly';
+    | 'center'
+    | 'flex-start'
+    | 'flex-end'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly';
   verticalAlignment?:
-  | 'center'
-  | 'flex-start'
-  | 'flex-end'
-  | 'space-between'
-  | 'space-around'
-  | 'space-evenly';
+    | 'center'
+    | 'flex-start'
+    | 'flex-end'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly';
   position?: 'absolute' | 'relative';
   fit?: 'contain' | 'cover' | 'stretch' | 'repeat' | 'center';
   children?: React.ReactNode;
- }
- 
-export const ImageWrap = ({...props}: ImageWrapProps & BorderRadiusProps & MarginProps & PaddingProps & BorderWidth) => {
+}
+
+export const ImageWrap = ({
+  ...props
+}: ImageWrapProps &
+  BorderRadiusProps &
+  MarginProps &
+  PaddingProps &
+  BorderWidth) => {
   return (
     <ImageBackground
-      source={props.source || { uri: props.url }}
+      source={props.source || {uri: props.url}}
       resizeMode={props.fit || 'contain'}
       style={[
         styles.overflow,
@@ -483,84 +491,90 @@ export const ImageWrap = ({...props}: ImageWrapProps & BorderRadiusProps & Margi
 
 /* ANCHOR TOUCH WRAP */
 interface TouchWrapProps {
-  opacity: number;
-  elevation: number;
-  height: any;
-  width: any;
-  widthPercent: any;
-  onPress: () => void;
-  backgroundColor: any;
-  borderBottomColor: any;
-  borderBottomWidth: number;
-  flex: number;
-  verticalAlignment:
-  | 'flex-start'
-  | 'flex-end'
-  | 'center'
-  | 'space-between'
-  | 'space-around'
-  | 'space-evenly';
-  horizontalAlignment:
-  | 'flex-start'
-  | 'flex-end'
-  | 'center'
-  | 'stretch'
-  | 'baseline';
-  borderRadius: number;
-  justifyContent: string;
-  alignItems: string;
-  style: any;
-  children: any;
- }
- 
- export const TouchWrap = ({...props}: TouchWrapProps & PaddingProps) => {
+  opacity?: number;
+  elevation?: number;
+  height?: any;
+  width?: any;
+  widthPercent?: any;
+  onPress?: () => void;
+  backgroundColor?: any;
+  borderBottomColor?: any;
+  borderBottomWidth?: number;
+  flex?: number;
+  verticalAlignment?:
+    | 'flex-start'
+    | 'flex-end'
+    | 'center'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly';
+  horizontalAlignment?:
+    | 'flex-start'
+    | 'flex-end'
+    | 'center'
+    | 'stretch'
+    | 'baseline';
+  borderRadius?: number;
+  justifyContent?: string;
+  alignItems?: string;
+  style?: any;
+  children?: any;
+}
+
+export const TouchWrap = ({...props}: TouchWrapProps & PaddingProps) => {
   return (
-  <TouchableOpacity
-  onPress={props.onPress}
-  activeOpacity={0.9}
-  style={[
-  {
-  ...Elevation(props.elevation),
-  opacity: props.opacity,
-  padding: Width(props.padding),
-  paddingTop: Width(props.paddingTop),
-  paddingBottom: Width(props.paddingBottom),
-  paddingLeft: Width(props.paddingLeft),
-  paddingRight: Width(props.paddingRight),
-  paddingVertical: Height(props.paddingVertical),
-  paddingHorizontal: Width(props.paddingHorizontal),
-  flex: props.flex,
-  backgroundColor: props.backgroundColor,
-  borderBottomColor: props.borderBottomColor,
-  borderBottomWidth: Width(props.borderBottomWidth),
-  width: Width(props.width) || props.widthPercent,
-  height: Height(props.height),
-  borderRadius: props.borderRadius,
-  justifyContent: props.verticalAlignment,
-  alignItems: props.horizontalAlignment,
-  },
-  props.style,
-  ]}>
-  {props.children}
-  </TouchableOpacity>
+    <TouchableOpacity
+      onPress={props.onPress}
+      activeOpacity={0.9}
+      style={[
+        {
+          ...Elevation(props.elevation),
+          opacity: props.opacity,
+          padding: Width(props.padding),
+          paddingTop: Width(props.paddingTop),
+          paddingBottom: Width(props.paddingBottom),
+          paddingLeft: Width(props.paddingLeft),
+          paddingRight: Width(props.paddingRight),
+          paddingVertical: Height(props.paddingVertical),
+          paddingHorizontal: Width(props.paddingHorizontal),
+          flex: props.flex,
+          backgroundColor: props.backgroundColor,
+          borderBottomColor: props.borderBottomColor,
+          borderBottomWidth: Width(props.borderBottomWidth),
+          width: Width(props.width) || props.widthPercent,
+          height: Height(props.height),
+          borderRadius: props.borderRadius,
+          justifyContent: props.verticalAlignment,
+          alignItems: props.horizontalAlignment,
+        },
+        props.style,
+      ]}>
+      {props.children}
+    </TouchableOpacity>
   );
- };
+};
 
 /**ANCHOR PAGE */
 interface PageProps {
-  fullscreen: boolean;
-  backgroundColor: any;
+  fullscreen?: boolean;
+  backgroundColor?: any;
   barColor: any;
   barIconColor: 'dark' | 'light';
   children?: React.ReactNode;
- }
+}
 
-export const Page = ({...props}: PageProps & PaddingProps & BorderWidth & MarginProps) => {
+export const Page = ({
+  ...props
+}: PageProps & PaddingProps & BorderWidth & MarginProps) => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.flex}>
+      {Platform.OS === 'ios' && (
+        <Container height={4} backgroundColor={props.barColor || '#f4f4f4'} />
+      )}
       <Container
+        flex={1}
         backgroundColor={props.backgroundColor || '#fff'}
         padding={props.padding}
         paddingTop={props.paddingTop}
@@ -573,7 +587,7 @@ export const Page = ({...props}: PageProps & PaddingProps & BorderWidth & Margin
           translucent={true}
           backgroundColor={props.barColor || '#0000'}
           barStyle={
-          props.barIconColor === 'dark' ? 'dark-content' : 'light-content'
+            props.barIconColor === 'dark' ? 'dark-content' : 'light-content'
           }
         />
         {props.children}
@@ -581,7 +595,6 @@ export const Page = ({...props}: PageProps & PaddingProps & BorderWidth & Margin
     </KeyboardAvoidingView>
   );
 };
-
 
 /**ANCHOR ROUNDED */
 interface RoundedProps {
@@ -598,7 +611,9 @@ interface RoundedProps {
   children: React.ReactNode;
 }
 
-export const Rounded = ({...props}: RoundedProps & MarginProps & BorderRadiusProps & BorderWidth) => {
+export const Rounded = ({
+  ...props
+}: RoundedProps & MarginProps & BorderRadiusProps & BorderWidth) => {
   return (
     <Container
       style={[
@@ -629,71 +644,71 @@ export const Rounded = ({...props}: RoundedProps & MarginProps & BorderRadiusPro
 
 /* ANCHOR  INPUT(ICON SECURE) */
 interface InputWrapProps {
-  multiline: boolean;
-  maxHeight: number;
-  maxLength: number;
-  width: number;
-  height: number;
-  borderColor: any;
-  borderWidth: number;
-  color: any;
-  showSecure: boolean;
-  onToggleSecure: () => void;
-  secureIcon: any;
-  icon: any;
-  inputStyle: object;
-  fontSize: number;
-  returnKeyType: 'next' | 'done' | 'go' | 'search';
-  fontWeight: string;
-  fontFamily: string;
-  secure: boolean;
-  autoCompleteType:
-  | 'off'
-  | 'cc-csc'
-  | 'cc-exp'
-  | 'cc-exp-month'
-  | 'cc-exp-year'
-  | 'cc-number'
-  | 'email'
-  | 'name'
-  | 'password'
-  | 'postal-code'
-  | 'street-address'
-  | 'tel'
-  | 'username';
-  autoCorrect: boolean;
-  numberOfLines: number;
-  placeholder: string;
-  onChangeText: () => void;
-  onFocus: () => void;
-  onBlur: () => void;
-  elevation: number;
-  backgroundColor: any;
-  borderRadius: number;
-  onSubmit: () => void;
-  onPress: () => void;
-  keyboardType:
-  | 'default'
-  | 'email-address'
-  | 'numeric'
-  | 'phone-pad'
-  | 'number-pad';
-  textAlignVertical: 'auto' | 'top' | 'bottom' | 'center';
-  value: any;
-  autoCapitalize: 'none' | 'sentences' | 'words' | 'characters';
-  placeholderTextColor: any;
-  refValue: any;
-  inputHeight: number;
-  verticalAlignment: 'center';
-  horizontalAlignment: 'center';
-  textAlign: 'center' | 'left' | 'right';
-  children: Element;
-  flex: number;
-  textPaddingVertical: number;
-  textPaddingHorizontal: number;
- }
- 
- export const InputWrap = ({...props}: InputWrapProps & PaddingProps) => {
+  multiline?: boolean;
+  maxHeight?: number;
+  maxLength?: number;
+  width?: number;
+  height?: number;
+  borderColor?: any;
+  borderWidth?: number;
+  color?: any;
+  showSecure?: boolean;
+  onToggleSecure?: () => void;
+  secureIcon?: any;
+  icon?: any;
+  inputStyle?: object;
+  fontSize?: number;
+  returnKeyType?: 'next' | 'done' | 'go' | 'search';
+  fontWeight?: string;
+  fontFamily?: string;
+  secure?: boolean;
+  autoCompleteType?:
+    | 'off'
+    | 'cc-csc'
+    | 'cc-exp'
+    | 'cc-exp-month'
+    | 'cc-exp-year'
+    | 'cc-number'
+    | 'email'
+    | 'name'
+    | 'password'
+    | 'postal-code'
+    | 'street-address'
+    | 'tel'
+    | 'username';
+  autoCorrect?: boolean;
+  numberOfLines?: number;
+  placeholder?: string;
+  onChangeText?: () => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
+  elevation?: number;
+  backgroundColor?: any;
+  borderRadius?: number;
+  onSubmit?: () => void;
+  onPress?: () => void;
+  keyboardType?:
+    | 'default'
+    | 'email-address'
+    | 'numeric'
+    | 'phone-pad'
+    | 'number-pad';
+  textAlignVertical?: 'auto' | 'top' | 'bottom' | 'center';
+  value?: any;
+  autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
+  placeholderTextColor?: any;
+  refValue?: any;
+  inputHeight?: number;
+  verticalAlignment?: 'center';
+  horizontalAlignment?: 'center';
+  textAlign?: 'center' | 'left' | 'right';
+  children?: Element;
+  flex?: number;
+  textPaddingVertical?: number;
+  textPaddingHorizontal?: number;
+}
+
+export const InputWrap = ({...props}: InputWrapProps & PaddingProps) => {
   return (
     <Container
       dir="row"
@@ -706,61 +721,63 @@ interface InputWrapProps {
       borderWidth={props.borderWidth}
       style={styles.overflow}>
       <TextInput
-      blurOnSubmit={false}
-      onFocus={props.onFocus}
-      onBlur={props.onBlur}
-      maxLength={props.maxLength}
-      textAlign={props.textAlign}
-      textAlignVertical={props.textAlignVertical || 'top'}
-      multiline={props.multiline}
-      onSubmitEditing={props.onSubmit}
-      keyboardType={props.keyboardType}
-      ref={props.refValue}
-      onChangeText={props.onChangeText}
-      value={props.value}
-      placeholder={props.placeholder}
-      placeholderTextColor={props.placeholderTextColor}
-      numberOfLines={props.numberOfLines}
-      autoCapitalize={props.autoCapitalize || 'none'}
-      autoCompleteType={props.autoCompleteType || 'off'}
-      autoCorrect={props.autoCorrect}
-      secureTextEntry={props.secure}
-      returnKeyType={props.returnKeyType}
-      // maxHeight={Height(props.maxHeight)}
-      style={[
-      styles.flex,
-      styles.input,
-      {
-      color: props.color || '#333',
-      height: Height(props.inputHeight),
-      fontFamily: props.fontFamily,
-      fontWeight: props.fontWeight,
-      fontSize: scaleFont(props.fontSize) || scaleFont(11),
-      paddingTop: Height(props.paddingTop),
-      paddingBottom: Height(props.paddingBottom),
-      paddingVertical: Height(props.textPaddingVertical),
-      paddingHorizontal: Height(props.textPaddingHorizontal),
-      paddingLeft: Width(props.paddingLeft),
-      paddingRight: Width(props.paddingRight),
-      },
-      props.inputStyle,
-      ]}
+        blurOnSubmit={false}
+        onFocus={props.onFocus}
+        onBlur={props.onBlur}
+        maxLength={props.maxLength}
+        textAlign={props.textAlign}
+        textAlignVertical={props.textAlignVertical || 'top'}
+        multiline={props.multiline}
+        onSubmitEditing={props.onSubmit}
+        keyboardType={props.keyboardType}
+        ref={props.refValue}
+        onChangeText={props.onChangeText}
+        value={props.value}
+        placeholder={props.placeholder}
+        placeholderTextColor={props.placeholderTextColor}
+        numberOfLines={props.numberOfLines}
+        autoCapitalize={props.autoCapitalize || 'none'}
+        autoCompleteType={props.autoCompleteType || 'off'}
+        autoCorrect={props.autoCorrect}
+        secureTextEntry={props.secure}
+        returnKeyType={props.returnKeyType}
+        // maxHeight={Height(props.maxHeight)}
+        style={[
+          styles.flex,
+          styles.input,
+          {
+            color: props.color || '#333',
+            height: Height(props.inputHeight),
+            fontFamily: props.fontFamily,
+            fontWeight: props.fontWeight,
+            fontSize: scaleFont(props.fontSize) || scaleFont(11),
+            paddingTop: Height(props.paddingTop),
+            paddingBottom: Height(props.paddingBottom),
+            paddingVertical: Height(props.textPaddingVertical),
+            paddingHorizontal: Height(props.textPaddingHorizontal),
+            paddingLeft: Width(props.paddingLeft),
+            paddingRight: Width(props.paddingRight),
+          },
+          props.inputStyle,
+        ]}
       />
     </Container>
   );
- };
- 
+};
+
 /* ANCHOR  SLIDE VERTICAL TRANSITION */
 interface SlideVerticalTransitionProps {
   duration?: number;
-  from?: any;
+  from: any;
   style?: any;
   elastic?: number;
   index?: number;
   children?: React.ReactNode;
 }
 
-export const SlideVerticalTransition = ({...props}: SlideVerticalTransitionProps) => {
+export const SlideVerticalTransition = ({
+  ...props
+}: SlideVerticalTransitionProps) => {
   const [animate] = useState(new Value(0));
   const slide = () => {
     Animated.timing(animate, {
@@ -796,9 +813,10 @@ export const SlideVerticalTransition = ({...props}: SlideVerticalTransitionProps
   );
 };
 
-
 /* ANCHOR  SLIDE HORIZONTAL TRANSITION */
-export const SlideHorizontalTransition = ({...props}: SlideVerticalTransitionProps) => {
+export const SlideHorizontalTransition = ({
+  ...props
+}: SlideVerticalTransitionProps) => {
   const [animate] = useState(new Value(0));
   const slide = () => {
     Animated.timing(animate, {
@@ -834,12 +852,10 @@ export const SlideHorizontalTransition = ({...props}: SlideVerticalTransitionPro
   );
 };
 
-
 /* ANCHOR  STYLES*/
 const styles = StyleSheet.create({
-  overflow: { overflow: 'hidden' },
-  flex: { flex: 1 },
-  input: { paddingLeft: 15 },
-  rounded: { justifyContent: 'center', alignItems: 'center' },
+  overflow: {overflow: 'hidden'},
+  flex: {flex: 1},
+  input: {paddingLeft: 15},
+  rounded: {justifyContent: 'center', alignItems: 'center'},
 });
-
