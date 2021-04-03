@@ -64,6 +64,7 @@ interface BorderWidth {
   borderRightWidth?: number;
   borderWidth?: number;
   borderColor?: any;
+  borderStyle?: any;
 }
 
 export const scaleFont = (val: any) => {
@@ -521,11 +522,13 @@ interface TouchWrapProps {
   children?: any;
 }
 
-export const TouchWrap = ({...props}: TouchWrapProps & PaddingProps) => {
+export const TouchWrap = ({
+  ...props
+}: TouchWrapProps & PaddingProps & BorderWidth) => {
   return (
     <TouchableOpacity
       onPress={props.onPress}
-      activeOpacity={0.9}
+      // activeOpacity={0.9}
       style={[
         {
           ...Elevation(props.elevation),
@@ -541,6 +544,9 @@ export const TouchWrap = ({...props}: TouchWrapProps & PaddingProps) => {
           backgroundColor: props.backgroundColor,
           borderBottomColor: props.borderBottomColor,
           borderBottomWidth: Width(props.borderBottomWidth),
+          borderWidth: props.borderWidth,
+          borderColor: props.borderColor,
+          borderStyle: props.borderStyle,
           width: Width(props.width) || props.widthPercent,
           height: Height(props.height),
           borderRadius: props.borderRadius,
@@ -598,17 +604,17 @@ export const Page = ({
 
 /**ANCHOR ROUNDED */
 interface RoundedProps {
-  backgroundColor: any;
-  size: number;
-  radius: number;
-  height: number;
-  position: 'absolute' | 'relative';
-  top: number;
-  bottom: number;
-  left: number;
-  right: number;
-  elevation: number;
-  children: React.ReactNode;
+  backgroundColor?: any;
+  size?: number;
+  radius?: number;
+  height?: number;
+  position?: 'absolute' | 'relative';
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+  elevation?: number;
+  children?: React.ReactNode;
 }
 
 export const Rounded = ({
@@ -712,6 +718,7 @@ export const InputWrap = ({...props}: InputWrapProps & PaddingProps) => {
   return (
     <Container
       dir="row"
+      flex={props.flex}
       width={props.width}
       height={props.height}
       elevation={props.elevation}

@@ -11,6 +11,7 @@ module.exports = {
           '@components': './src/components',
           '@lib': './src/lib',
           '@helpers': './src/helpers',
+          '@util': './src/util',
         },
       },
       'react-native-reanimated/plugin',
