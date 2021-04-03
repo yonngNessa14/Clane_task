@@ -78,6 +78,7 @@ const App = (props: any) => {
         ...errors,
         email: 'valid email is required',
       });
+      return;
     }
 
     if (phone !== '' && !phoneValidated) {
