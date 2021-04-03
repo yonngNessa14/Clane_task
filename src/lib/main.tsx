@@ -492,6 +492,7 @@ export const ImageWrap = ({
 
 /* ANCHOR TOUCH WRAP */
 interface TouchWrapProps {
+  disabled?: boolean;
   opacity?: number;
   elevation?: number;
   height?: any;
@@ -528,6 +529,7 @@ export const TouchWrap = ({
   return (
     <TouchableOpacity
       onPress={props.onPress}
+      disabled={props.disabled}
       // activeOpacity={0.9}
       style={[
         {
